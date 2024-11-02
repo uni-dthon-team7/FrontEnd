@@ -1,6 +1,11 @@
-const RecipeCard = ({ recipe, color }) => {
+const RecipeCard = ({ recipe, color, onClick, isSelected }) => {
   return (
-    <div className="bg-white shadow-custom rounded-md p-3 shrink-0">
+    <div
+      className={`bg-white shadow-custom rounded-md p-3 shrink-0 cursor-pointer border-2 ${
+        isSelected ? "border-[#F2843B]" : "border-white"
+      }`}
+      onClick={onClick}
+    >
       <img
         src={recipe.image}
         alt={recipe.name}

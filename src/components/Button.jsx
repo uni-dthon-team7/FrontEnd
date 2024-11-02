@@ -1,6 +1,12 @@
-const Button = ({ children }) => {
+const Button = ({ children, className, disabled, onClick }) => {
   return (
-    <button className="bg-[#F2843B] text-white w-full font-semibold h-12">
+    <button
+      className={`w-full font-semibold h-12 text-white ${className} ${
+        disabled ? "bg-[#979797]" : "bg-[#F2843B] "
+      }`}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
