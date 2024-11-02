@@ -24,11 +24,11 @@ const WhiteCard = ({
         selected ? borderStyle : "border-white"
       }`}
     >
-      <div className={`shadow-inner-custom rounded-full ${sizeClass} mb-1`}>
+      <div className={`rounded-full ${sizeClass} mb-1 shadow-inner-custom relative z-10`}>
         <img
           src={image}
           alt={name}
-          className={`${sizeClass} m-1 block rounded-full`}
+          className={`${sizeClass} block rounded-full relative -z-10`}
         />
       </div>
       <div className="text-sm font-semibold">{name}</div>

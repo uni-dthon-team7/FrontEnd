@@ -158,7 +158,7 @@ const Cook = () => {
         ))}
       </GrayCard>
       <div className="flex gap-3 fixed bottom-0 right-0 w-full z-10 bg-white py-2 px-[1.3rem]">
-        <Button className="bg-white text-[#F2843B] border border-[#F2843B]">
+        <Button className="bg-white !text-[#F2843B] border border-[#F2843B]">
           레시피 없이 만들기
         </Button>
         <Button
