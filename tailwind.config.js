@@ -8,6 +8,7 @@ export default {
     extend: {
       boxShadow: {
         'custom': '1px 1px 1px rgba(0, 0, 0, 0.25)',
+        'inner-custom': 'inset 0px 1px 3px rgba(0, 0, 0, 0.25)',
       },
     },
   },
