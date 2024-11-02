@@ -9,12 +9,14 @@ const WhiteCard = ({
   imgSize,
   isSelected,
   borderStyle = "border-[#F2843B]",
+  onClick,
 }) => {
   const sizeClass = imgSize === "small" ? "w-10 h-10" : "w-12 h-12";
   const [selected, setSelected] = useState(isSelected);
 
   const handleClick = () => {
     setSelected(!selected);
+    onClick && onClick();
   };
 
   return (

@@ -40,6 +40,12 @@ export const ingredients = [
     image:
       "https://www.nongmin.com/-/raw/srv-nongmin/data2/content/image/2017/08/29/.cache/512/20170829129799.jpg",
   },
+  {
+    name: "소고기",
+    count: 2,
+    image:
+      "https://cafe24.poxo.com/ec01/woorisogogi/p1p7L96QYgpvk7KwZPVnPx+iQPsAsNu455XWk9DNkz9Z36KcpWtANh6JGizLRXwxp8iQ7Dw881Oi54AFivuPdQ==/_/web/product/big/202108/5b0cc43533bc359367561864a4071923.jpg",
+  },
 ];
 
 export const tools = [

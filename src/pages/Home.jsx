@@ -7,11 +7,39 @@ import Button from "../components/Button";
 import WhiteCard from "../components/WhiteCard";
 import ToolIcon from "../assets/cooktop.svg";
 import GroceryIcon from "../assets/grocery.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CharacterCard from "../components/CharacterCard";
 import { ingredients, tools } from "../const";
 
 const Home = () => {
+  const [selectedIngredients, setSelectedIngredients] = React.useState([]);
+  const [selectedTools, setSelectedTools] = React.useState([]);
+  const navigate = useNavigate();
+
+  const handleIngredientClick = (ingredient) => {
+    setSelectedIngredients((prev) =>
+      prev.includes(ingredient)
+        ? prev.filter((item) => item !== ingredient)
+        : [...prev, ingredient]
+    );
+  };
+
+  const handleToolClick = (tool) => {
+    setSelectedTools((prev) =>
+      prev.includes(tool)
+        ? prev.filter((item) => item !== tool)
+        : [...prev, tool]
+    );
+  };
+
+  const handleCreateRecipeClick = () => {
+    const queryParams = new URLSearchParams({
+      ingredients: selectedIngredients.join(","),
+      tools: selectedTools.join(","),
+    }).toString();
+    navigate(`/cook?${queryParams}`);
+  };
+
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="flex flex-col gap-1">
@@ -48,6 +76,7 @@ const Home = () => {
                   image={ingredient.image}
                   name={ingredient.name}
                   count={ingredient.count}
+                  onClick={() => handleIngredientClick(ingredient.name)}
                 />
               ))}
             </div>
@@ -66,14 +95,13 @@ const Home = () => {
                   image={tool.image}
                   name={tool.name}
                   count={tool.count}
+                  onClick={() => handleToolClick(tool.name)}
                 />
               ))}
             </div>
           </div>
         </GrayCard>
-        <Link to="/cook">
-          <Button>요리 만들기</Button>
-        </Link>
+        <Button onClick={handleCreateRecipeClick}>요리 만들기</Button>
       </div>
     </div>
   );

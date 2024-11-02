@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import backIcon from "../assets/back.svg";
-import React from "react";
+import React, { useEffect } from "react";
 import GrayCard from "../components/GrayCard";
 import WhiteCard from "../components/WhiteCard";
 import ToolIcon from "../assets/cooktop.svg";
@@ -9,6 +9,7 @@ import RecipeCard from "../components/RecipeCard";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { ingredients, tools } from "../const";
+import axios from "axios";
 
 const Cook = () => {
   const navigate = useNavigate();
@@ -62,7 +63,70 @@ const Cook = () => {
     },
   ];
 
+  const [recipes, setRecipes] = React.useState([]);
+
+  const queryParams = new URLSearchParams(location.search);
+  const ingredientsParam = queryParams.get("ingredients");
+  const toolsParam = queryParams.get("tools");
+
   const [selectedRecipe, setSelectedRecipe] = React.useState(null);
+  const [selectedIngredients, setSelectedIngredients] = React.useState(
+    ingredientsParam ? ingredientsParam.split(",") : []
+  );
+  const [selectedTools, setSelectedTools] = React.useState(
+    toolsParam ? toolsParam.split(",") : []
+  );
+
+  const handleIngredientClick = (ingredient) => {
+    setSelectedIngredients((prev) =>
+      prev.includes(ingredient)
+        ? prev.filter((item) => item !== ingredient)
+        : [...prev, ingredient]
+    );
+  };
+
+  const handleToolClick = (tool) => {
+    setSelectedTools((prev) =>
+      prev.includes(tool)
+        ? prev.filter((item) => item !== tool)
+        : [...prev, tool]
+    );
+  };
+
+  const fetchRecommendedRecipes = async () => {
+    try {
+      const response = await axios.post(
+        "http://16.171.73.198:8080/gpt/recommend",
+        {
+          gradients: selectedIngredients,
+          tools: selectedTools,
+        }
+      );
+      console.log("Recommended recipes fetched:", response.data);
+      setRecipes(
+        Object.values(response.data).map((recipe, index) => ({
+          id: index + 1,
+          name: recipe.요리명,
+          user: "백종원",
+          used: recipe.used,
+          time: "15",
+          mainIngredient: recipe["메인 재료"],
+          subIngredient: recipe["서브 재료"],
+          image: recipe.image,
+          matchRate: recipe["완성도"],
+        }))
+      );
+    } catch (error) {
+      console.error("Error fetching recommended recipes:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRecommendedRecipes();
+  }, [selectedIngredients, selectedTools]);
+
+  console.log(selectedIngredients);
+  console.log(selectedTools);
 
   return (
     <div className="relative flex flex-col pb-16">
@@ -86,6 +150,8 @@ const Cook = () => {
                 image={ingredient.image}
                 name={ingredient.name}
                 imgSize="small"
+                isSelected={selectedIngredients.includes(ingredient.name)}
+                onClick={() => handleIngredientClick(ingredient.name)}
               />
             ))}
           </div>
@@ -104,6 +170,8 @@ const Cook = () => {
                 image={tool.image}
                 name={tool.name}
                 imgSize="small"
+                isSelected={selectedTools.includes(tool.name)}
+                onClick={() => handleToolClick(tool.name)}
               />
             ))}
           </div>
@@ -112,7 +180,7 @@ const Cook = () => {
 
       <div className="font-bold text-lg w-full mb-1">재료 우선</div>
       <GrayCard className="flex gap-3 py-2 px-3 overflow-x-auto flex-nowrap mb-3">
-        {recipes1.map((recipe) => (
+        {recipes && recipes.slice(0, 2).map((recipe) => (
           <RecipeCard
             recipe={recipe}
             color="orange"
@@ -123,7 +191,7 @@ const Cook = () => {
       </GrayCard>
       <div className="font-bold text-lg w-full mb-1">도구 우선</div>
       <GrayCard className="flex gap-3 py-2 px-3 overflow-x-auto flex-nowrap mb-3">
-        {recipes2.map((recipe) => (
+        {recipes && recipes.slice(2, 4).map((recipe) => (
           <RecipeCard
             recipe={recipe}
             color="yellow"
