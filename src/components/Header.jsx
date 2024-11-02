@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import menuIcon from '../assets/menu_icon.svg';
 
 const Header = () => {
   return (
-    <header>
+    <header className='h-10'>
       <img src={menuIcon} alt="menu" />
     </header>
   );
