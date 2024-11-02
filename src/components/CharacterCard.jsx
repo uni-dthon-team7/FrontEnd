@@ -3,15 +3,26 @@ import GrayCard from "./GrayCard";
 
 const CharacterCard = ({ hasBab, exp, setExp, level = 1 }) => {
   const [bap, setBap] = useState(hasBab ? 80 : 0);
+  const [bapCount, setBapCount] = useState(0);
 
   const handleBapClick = () => {
-    setBap((prev) => (prev >= 20 ? prev - 20 : 0));
+    setBap((prev) => {
+      if (prev >= 20) {
+        setBapCount((count) => count + 1);
+        return prev - 20;
+      }
+      return prev;
+    });
   };
 
   return (
     <div className="flex gap-4">
       <div className="bg-[#FEF7E0] rounded-md shadow-custom pr-3 shrink-0 relative pt-3">
-        <img src="/src/assets/jabu.png" alt="jabu" className="w-32" />
+        <img
+          src={`/src/assets/jabu${bapCount > 3 ? 3 : bapCount}.png`}
+          alt="jabu"
+          className="w-32"
+        />
         <img
           className="absolute w-32 top-0"
           src="/src/assets/meat.png"
