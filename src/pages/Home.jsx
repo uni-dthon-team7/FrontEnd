@@ -5,6 +5,9 @@ import starIcon from "../assets/star.svg";
 import BookmarkCard from "../components/BookmarkCard";
 import Button from "../components/Button";
 import WhiteCard from "../components/WhiteCard";
+import ToolIcon from "../assets/cooktop.svg";
+import GroceryIcon from "../assets/grocery.svg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -29,9 +32,12 @@ const Home = () => {
           <div className="font-bold text-lg">자주 쓰는</div>
         </div>
         <GrayCard className="flex flex-col items-center pb-2 pt-4 mb-2">
-          <div className="flex items-start gap-2">
-            <div className="text-sm font-semibold whitespace-nowrap shrink-0 mx-2">
-              재료
+          <div className="flex items-center gap-2">
+            <div className="flex flex-col justify-center items-center h-full">
+              <img src={GroceryIcon} className="h-6 w-6" />
+              <div className="text-sm font-semibold whitespace-nowrap shrink-0 mx-2">
+                재료
+              </div>
             </div>
             <div className="flex overflow-x-scroll pb-2 gap-2 w-[70vw] shrink-0">
               <WhiteCard
@@ -57,9 +63,12 @@ const Home = () => {
             </div>
           </div>
           <hr className="w-11/12 my-2" />
-          <div className="flex items-start gap-2">
-            <div className="text-sm font-semibold whitespace-nowrap shrink-0 mx-2">
-              도구
+          <div className="flex items-center gap-2">
+            <div className="flex flex-col justify-center items-center h-full">
+              <img src={ToolIcon} className="h-6 w-6" />
+              <div className="text-sm font-semibold whitespace-nowrap shrink-0 mx-2">
+                도구
+              </div>
             </div>
             <div className="flex overflow-x-scroll pb-2 gap-2 w-[70vw] shrink-0">
               <WhiteCard
@@ -85,7 +94,9 @@ const Home = () => {
             </div>
           </div>
         </GrayCard>
-        <Button>요리 만들기</Button>
+        <Link to="/cook">
+          <Button>요리 만들기</Button>
+        </Link>
       </div>
     </div>
   );
