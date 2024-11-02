@@ -55,7 +55,7 @@ const Cook = () => {
   ];
 
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex flex-col pb-14">
       <Link to="/">
         <img
           src={backIcon}

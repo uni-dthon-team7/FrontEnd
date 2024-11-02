@@ -1,9 +1,28 @@
-const WhiteCard = ({ children, className, image, name, count, imgSize }) => {
-  const sizeClass = imgSize === 'small' ? 'w-10 h-10' : 'w-12 h-12';
+import { useState } from "react";
+
+const WhiteCard = ({
+  children,
+  className,
+  image,
+  name,
+  count,
+  imgSize,
+  isSelected,
+  borderStyle = "border-[#F2843B]",
+}) => {
+  const sizeClass = imgSize === "small" ? "w-10 h-10" : "w-12 h-12";
+  const [selected, setSelected] = useState(isSelected);
+
+  const handleClick = () => {
+    setSelected(!selected);
+  };
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-custom py-2 px-4 ${className} flex flex-col items-center`}
+      onClick={handleClick}
+      className={`bg-white rounded-lg shadow-custom py-2 px-4 ${className} flex flex-col items-center cursor-pointer border-2 ${
+        selected ? borderStyle : "border-white"
+      }`}
     >
       <div className={`shadow-inner-custom rounded-full ${sizeClass} mb-1`}>
         <img
