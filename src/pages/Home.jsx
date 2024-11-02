@@ -15,6 +15,9 @@ const Home = () => {
   const [selectedIngredients, setSelectedIngredients] = React.useState([]);
   const [selectedTools, setSelectedTools] = React.useState([]);
   const navigate = useNavigate();
+  
+  const searchParams = new URLSearchParams(window.location.search);
+  const hasBab = searchParams.get("finished") === "true";
 
   const handleIngredientClick = (ingredient) => {
     setSelectedIngredients((prev) =>
@@ -47,7 +50,7 @@ const Home = () => {
           <span className="font-bold text-lg">먹살먹죽 </span>
           <span className="font-bold text-sm">님의 밥친구</span>
         </div>
-        <CharacterCard />
+        <CharacterCard hasBab={hasBab}/>
       </div>
       <hr />
       <div className="flex flex-col gap-1">

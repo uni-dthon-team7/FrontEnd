@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import backIcon from "../assets/back.svg";
 import { useState } from "react";
 import Step from "../components/Step";
@@ -8,6 +8,8 @@ const Steps = () => {
   const [step, setStep] = useState(0);
   const [selectedOption, setSelectedOption] = useState("양파");
   const [preview, setPreview] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -113,6 +115,8 @@ const Steps = () => {
           onClick={() => {
             if (step < 5) {
               setStep(step + 1);
+            } else {
+              navigate("/?finished=true");
             }
           }}
         >
