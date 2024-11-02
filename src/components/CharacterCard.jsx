@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GrayCard from "./GrayCard";
 
-const CharacterCard = ({ hasBab }) => {
+const CharacterCard = ({ hasBab, exp, setExp, level = 1 }) => {
   const [bap, setBap] = useState(hasBab ? 80 : 0);
 
   const handleBapClick = () => {
@@ -26,11 +26,11 @@ const CharacterCard = ({ hasBab }) => {
           <div className="flex justify-between items-center">
             <div>
               <span className="font-bold text-[#F2843B] mr-1 text-sm">
-                Lv. 17
+                Lv. {level}
               </span>
-              <span className="font-bold text-sm">중급요리사</span>
+              <span className="font-bold text-sm">초급요리사</span>
             </div>
-            <span className="text-xs ">(30/100)</span>
+            <span className="text-xs">(0/100)</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
             <div
@@ -40,7 +40,11 @@ const CharacterCard = ({ hasBab }) => {
           </div>
         </GrayCard>
         <div className="border flex-grow rounded-md flex p-2">
-          <img src="/src/assets/bap0.png" alt="bab" className="ml-6 w-14" />
+          <img
+            src={`/src/assets/bap${bap / 20}.png`}
+            alt="bab"
+            className="ml-6 w-14"
+          />
           <div className="rounded-full font-bold bg-[#F2843B] shadow-custom w-14 h-14 flex justify-center items-center ml-6 text-white text-sm flex-col">
             밥 주기
             <br />
