@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Page1 from './pages/Page1';
 import './App.css'
 import Header from './components/Header';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/page1" element={<Page1 />} />
       </Routes>
+      <NavBar />
     </Router>
   )
 }
