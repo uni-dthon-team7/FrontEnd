@@ -8,6 +8,7 @@ import GroceryIcon from "../assets/grocery.svg";
 import RecipeCard from "../components/RecipeCard";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { ingredients, tools } from "../const";
 
 const Cook = () => {
   const navigate = useNavigate();
@@ -80,26 +81,13 @@ const Cook = () => {
             </div>
           </div>
           <div className="flex overflow-x-scroll pb-2 gap-2 w-[70vw] shrink-0">
-            <WhiteCard
-              image="https://jhealthfile.joins.com/photo//2020/11/26/1343ea624b4b3.jpg"
-              name="계란"
-              imgSize="small"
-            />
-            <WhiteCard
-              image="https://jhealthfile.joins.com/photo//2020/11/26/1343ea624b4b3.jpg"
-              name="계란"
-              imgSize="small"
-            />
-            <WhiteCard
-              image="https://jhealthfile.joins.com/photo//2020/11/26/1343ea624b4b3.jpg"
-              name="계란"
-              imgSize="small"
-            />
-            <WhiteCard
-              image="https://jhealthfile.joins.com/photo//2020/11/26/1343ea624b4b3.jpg"
-              name="계란"
-              imgSize="small"
-            />
+            {ingredients.map((ingredient) => (
+              <WhiteCard
+                image={ingredient.image}
+                name={ingredient.name}
+                imgSize="small"
+              />
+            ))}
           </div>
         </div>
         <hr className="w-11/12 my-2" />
@@ -111,26 +99,13 @@ const Cook = () => {
             </div>
           </div>
           <div className="flex overflow-x-scroll pb-2 gap-2 w-[70vw] shrink-0">
-            <WhiteCard
-              image="https://i.namu.wiki/i/i5243NP2bqgURInYNRZ8nwehqJbLDoH0PCppza08BxRl5zcmh2x34n4qMsGVJCMDlyjuSct5MUU0T8w9Cs33YQ.webp"
-              name="손"
-              imgSize="small"
-            />
-            <WhiteCard
-              image="https://i.namu.wiki/i/i5243NP2bqgURInYNRZ8nwehqJbLDoH0PCppza08BxRl5zcmh2x34n4qMsGVJCMDlyjuSct5MUU0T8w9Cs33YQ.webp"
-              name="손"
-              imgSize="small"
-            />
-            <WhiteCard
-              image="https://i.namu.wiki/i/i5243NP2bqgURInYNRZ8nwehqJbLDoH0PCppza08BxRl5zcmh2x34n4qMsGVJCMDlyjuSct5MUU0T8w9Cs33YQ.webp"
-              name="손"
-              imgSize="small"
-            />
-            <WhiteCard
-              image="https://i.namu.wiki/i/i5243NP2bqgURInYNRZ8nwehqJbLDoH0PCppza08BxRl5zcmh2x34n4qMsGVJCMDlyjuSct5MUU0T8w9Cs33YQ.webp"
-              name="손"
-              imgSize="small"
-            />
+            {tools.map((tool) => (
+              <WhiteCard
+                image={tool.image}
+                name={tool.name}
+                imgSize="small"
+              />
+            ))}
           </div>
         </div>
       </GrayCard>
