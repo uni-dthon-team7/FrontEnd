@@ -9,7 +9,7 @@ const NavBar = () => {
   const currentPath = location.pathname;
 
   return (
-    <nav className="navbar absolute bottom-0 h-14 w-full flex justify-center left-0 right-0 border-t">
+    <nav className="navbar fixed bottom-0 h-14 w-full flex justify-center left-0 right-0 border-t bg-white">
       <div className="flex items-center justify-around w-full">
         <Link to="/search">
           <SearchIcon
