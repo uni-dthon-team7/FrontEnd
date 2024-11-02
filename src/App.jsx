@@ -5,6 +5,7 @@ import "./App.css";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import Recipe from "./pages/Recipe";
+import Steps from "./pages/Steps";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cook" element={<Cook />} />
         <Route path="/recipe/:id" element={<Recipe />} />
+        <Route path="/step/:id" element={<Steps />} />
       </Routes>
-      <NavBar />
+      <NavBar />  
     </Router>
   );
 }
