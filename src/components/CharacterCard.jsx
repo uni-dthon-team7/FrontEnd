@@ -6,13 +6,10 @@ const CharacterCard = ({ hasBab, exp, setExp, level = 1 }) => {
   const [bapCount, setBapCount] = useState(0);
 
   const handleBapClick = () => {
-    setBap((prev) => {
-      if (prev >= 20) {
-        setBapCount((count) => count + 1);
-        return prev - 20;
-      }
-      return prev;
-    });
+    if (bap >= 20) {
+      setBap(bap - 20);
+      setBapCount(bapCount + 1);
+    }
   };
 
   return (
@@ -23,11 +20,13 @@ const CharacterCard = ({ hasBab, exp, setExp, level = 1 }) => {
           alt="jabu"
           className="w-32"
         />
-        <img
-          className="absolute w-32 top-0"
-          src="/src/assets/meat.png"
-          alt="meat"
-        />
+        {bapCount < 2 && (
+          <img
+            className="absolute w-32 top-0"
+            src="/src/assets/meat.png"
+            alt="meat"
+          />
+        )}
         <div className="absolute top-4 right-2 bg-[#F2843B] p-1.5 rounded shadow-custom">
           <img src="/src/assets/chart.svg" />
         </div>
