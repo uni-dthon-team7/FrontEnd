@@ -24,28 +24,28 @@ const Steps = () => {
 
   const stepComponents = [
     <Step
-      image="https://recipe1.ezmember.co.kr/cache/recipe/2019/07/16/5e0cc17514ab766b63cede896813fc731.jpg"
+      image="https://static.wtable.co.kr/image/production/service/recipe/2298/c9615d22-3c1a-4464-8a55-6ef432a30772.jpg?size=800x800"
       title="1. 재료를 준비합니다."
       description="소고기, 양파, 소금, 후추, 식용유, 후라이팬을 준비합니다."
       selectedOption={selectedOption}
       setSelectedOption={setSelectedOption}
     />,
     <Step
-      image="https://recipe1.ezmember.co.kr/cache/recipe/2019/07/16/5e0cc17514ab766b63cede896813fc731.jpg"
+      image="https://static.wtable.co.kr/image/production/service/kitchenguidecontent/63094/5c75e50b-86c5-4fdd-a975-e8b6e4a18211.jpg"
       title="2. 양파와 소고기를 준비합니다."
       description="양파를 채썰어주세요. 소고기는 먹기 좋은 크기로 썰어주세요."
       selectedOption={selectedOption}
       setSelectedOption={setSelectedOption}
     />,
     <Step
-      image="https://recipe1.ezmember.co.kr/cache/recipe/2019/07/16/5e0cc17514ab766b63cede896813fc731.jpg"
+      image="https://recipe1.ezmember.co.kr/cache/recipe/2020/07/30/a9a24fb3ce2276cc85ff6ed9df9153391.jpg"
       title="3. 양파를 볶아줍니다."
       description="후라이팬에 식용유를 두르고 양파를 투명해질 때까지 볶아줍니다."
       selectedOption={selectedOption}
       setSelectedOption={setSelectedOption}
     />,
     <Step
-      image="https://recipe1.ezmember.co.kr/cache/recipe/2019/07/16/5e0cc17514ab766b63cede896813fc731.jpg"
+      image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWD1GTwAvc4IAnsBi3eBRyvZL2gjShm0otag&s"
       title="4. 소고기를 익혀줍니다."
       description="소고기를 넣고 중불에서 익혀줍니다."
       selectedOption={selectedOption}

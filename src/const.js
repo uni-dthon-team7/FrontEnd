@@ -71,6 +71,11 @@ export const tools = [
 
 export const recipeImages = [
   {
+    name: "소고기양파볶음",
+    imgPath:
+      "https://recipe1.ezmember.co.kr/cache/recipe/2019/07/16/5e0cc17514ab766b63cede896813fc731.jpg",
+  },
+  {
     name: "양파소고기볶음",
     imgPath:
       "https://recipe1.ezmember.co.kr/cache/recipe/2019/07/16/5e0cc17514ab766b63cede896813fc731.jpg",

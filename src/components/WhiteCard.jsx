@@ -23,7 +23,7 @@ const WhiteCard = ({
     <div
       onClick={handleClick}
       className={`bg-white rounded-lg shadow-custom py-2 px-4 ${className} flex flex-col items-center cursor-pointer border-2 ${
-        selected ? borderStyle : "border-white"
+        selected ? borderStyle + " !bg-[#FFF1EC]" : "border-white"
       }`}
     >
       <div className={`rounded-full ${sizeClass} mb-1 shadow-inner-custom relative z-10`}>
