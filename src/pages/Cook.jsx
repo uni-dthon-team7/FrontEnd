@@ -10,6 +10,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { ingredients, tools } from "../const";
 import axios from "axios";
+import { recipeImages } from "../const";
 
 const Cook = () => {
   const navigate = useNavigate();
@@ -112,7 +113,9 @@ const Cook = () => {
           time: "15",
           mainIngredient: recipe["메인 재료"],
           subIngredient: recipe["서브 재료"],
-          image: recipe.image,
+          image: recipeImages.find(
+            (image) => image.name.trim() === recipe.요리명.trim()
+          )?.imgPath,
           matchRate: recipe["완성도"],
         }))
       );
@@ -180,25 +183,31 @@ const Cook = () => {
 
       <div className="font-bold text-lg w-full mb-1">재료 우선</div>
       <GrayCard className="flex gap-3 py-2 px-3 overflow-x-auto flex-nowrap mb-3">
-        {recipes && recipes.slice(0, 2).map((recipe) => (
-          <RecipeCard
-            recipe={recipe}
-            color="orange"
-            isSelected={selectedRecipe === recipe.id}
-            onClick={() => setSelectedRecipe(recipe.id)}
-          />
-        ))}
+        {recipes &&
+          recipes
+            .slice(0, 2)
+            .map((recipe) => (
+              <RecipeCard
+                recipe={recipe}
+                color="orange"
+                isSelected={selectedRecipe === recipe.id}
+                onClick={() => setSelectedRecipe(recipe.id)}
+              />
+            ))}
       </GrayCard>
       <div className="font-bold text-lg w-full mb-1">도구 우선</div>
       <GrayCard className="flex gap-3 py-2 px-3 overflow-x-auto flex-nowrap mb-3">
-        {recipes && recipes.slice(2, 4).map((recipe) => (
-          <RecipeCard
-            recipe={recipe}
-            color="yellow"
-            isSelected={selectedRecipe === recipe.id}
-            onClick={() => setSelectedRecipe(recipe.id)}
-          />
-        ))}
+        {recipes &&
+          recipes
+            .slice(2, 4)
+            .map((recipe) => (
+              <RecipeCard
+                recipe={recipe}
+                color="yellow"
+                isSelected={selectedRecipe === recipe.id}
+                onClick={() => setSelectedRecipe(recipe.id)}
+              />
+            ))}
       </GrayCard>
       <div className="flex gap-3 fixed bottom-0 right-0 w-full z-10 bg-white py-2 px-[1.3rem]">
         <Button className="bg-white !text-[#F2843B] border border-[#F2843B]">
