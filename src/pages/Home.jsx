@@ -7,18 +7,53 @@ import Button from "../components/Button";
 import WhiteCard from "../components/WhiteCard";
 import ToolIcon from "../assets/cooktop.svg";
 import GroceryIcon from "../assets/grocery.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import CharacterCard from "../components/CharacterCard";
+import { ingredients, tools } from "../const";
 
 const Home = () => {
+  const [selectedIngredients, setSelectedIngredients] = React.useState([]);
+  const [selectedTools, setSelectedTools] = React.useState([]);
+  const [exp, setExp] = React.useState(0);
+  const navigate = useNavigate();
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const hasBab = searchParams.get("finished") === "true";
+
+  const handleIngredientClick = (ingredient) => {
+    setSelectedIngredients((prev) =>
+      prev.includes(ingredient)
+        ? prev.filter((item) => item !== ingredient)
+        : [...prev, ingredient]
+    );
+  };
+
+  const handleToolClick = (tool) => {
+    setSelectedTools((prev) =>
+      prev.includes(tool)
+        ? prev.filter((item) => item !== tool)
+        : [...prev, tool]
+    );
+  };
+
+  const handleCreateRecipeClick = () => {
+    const queryParams = new URLSearchParams({
+      ingredients: selectedIngredients.join(","),
+      tools: selectedTools.join(","),
+    }).toString();
+    navigate(`/cook?${queryParams}`);
+  };
+
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <div>
+        <div className="mb-2">
           <span className="font-bold text-lg">먹살먹죽 </span>
           <span className="font-bold text-sm">님의 밥친구</span>
         </div>
-        <GrayCard className="h-32">a</GrayCard>
+        <CharacterCard hasBab={hasBab} exp={exp} setExp={setExp} />
       </div>
+      <hr />
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <img src={pinIcon} alt="pin" className="w-4 h-4" />
@@ -40,26 +75,14 @@ const Home = () => {
               </div>
             </div>
             <div className="flex overflow-x-scroll pb-2 gap-2 w-[70vw] shrink-0">
-              <WhiteCard
-                image="https://jhealthfile.joins.com/photo//2020/11/26/1343ea624b4b3.jpg"
-                name="계란"
-                count={10}
-              />
-              <WhiteCard
-                image="https://jhealthfile.joins.com/photo//2020/11/26/1343ea624b4b3.jpg"
-                name="계란"
-                count={10}
-              />
-              <WhiteCard
-                image="https://jhealthfile.joins.com/photo//2020/11/26/1343ea624b4b3.jpg"
-                name="계란"
-                count={10}
-              />
-              <WhiteCard
-                image="https://jhealthfile.joins.com/photo//2020/11/26/1343ea624b4b3.jpg"
-                name="계란"
-                count={10}
-              />
+              {ingredients.map((ingredient) => (
+                <WhiteCard
+                  image={ingredient.image}
+                  name={ingredient.name}
+                  count={ingredient.count}
+                  onClick={() => handleIngredientClick(ingredient.name)}
+                />
+              ))}
             </div>
           </div>
           <hr className="w-11/12 my-2" />
@@ -71,32 +94,18 @@ const Home = () => {
               </div>
             </div>
             <div className="flex overflow-x-scroll pb-2 gap-2 w-[70vw] shrink-0">
-              <WhiteCard
-                image="https://i.namu.wiki/i/i5243NP2bqgURInYNRZ8nwehqJbLDoH0PCppza08BxRl5zcmh2x34n4qMsGVJCMDlyjuSct5MUU0T8w9Cs33YQ.webp"
-                name="손"
-                count={10}
-              />
-              <WhiteCard
-                image="https://i.namu.wiki/i/i5243NP2bqgURInYNRZ8nwehqJbLDoH0PCppza08BxRl5zcmh2x34n4qMsGVJCMDlyjuSct5MUU0T8w9Cs33YQ.webp"
-                name="손"
-                count={10}
-              />
-              <WhiteCard
-                image="https://i.namu.wiki/i/i5243NP2bqgURInYNRZ8nwehqJbLDoH0PCppza08BxRl5zcmh2x34n4qMsGVJCMDlyjuSct5MUU0T8w9Cs33YQ.webp"
-                name="손"
-                count={10}
-              />
-              <WhiteCard
-                image="https://i.namu.wiki/i/i5243NP2bqgURInYNRZ8nwehqJbLDoH0PCppza08BxRl5zcmh2x34n4qMsGVJCMDlyjuSct5MUU0T8w9Cs33YQ.webp"
-                name="손"
-                count={10}
-              />
+              {tools.map((tool) => (
+                <WhiteCard
+                  image={tool.image}
+                  name={tool.name}
+                  count={tool.count}
+                  onClick={() => handleToolClick(tool.name)}
+                />
+              ))}
             </div>
           </div>
         </GrayCard>
-        <Link to="/cook">
-          <Button>요리 만들기</Button>
-        </Link>
+        <Button onClick={handleCreateRecipeClick}>요리 만들기</Button>
       </div>
     </div>
   );

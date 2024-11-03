@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import Recipe from "./pages/Recipe";
 import Search from "./pages/search";
+import Steps from "./pages/Steps";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
         <Route path="/cook" element={<Cook />} />
         <Route path="/recipe/:id" element={<Recipe />}/>
         <Route path="/search" element={<Search />} />
+        <Route path="/step/:id" element={<Steps />} />
       </Routes>
-      <NavBar />
+      <NavBar />  
     </Router>
   );
 }

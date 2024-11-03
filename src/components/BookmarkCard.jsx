@@ -9,7 +9,7 @@ const BookmarkCard = ({}) => {
       name: "간계밥",
       timestamp: "2021-09-15",
       image:
-        "https://i.namu.wiki/i/kGAmARqR7IpFIFDJql7OU55Pw_qcHXsb8yozxvgMM0GrjjNRvkGK97hjZ353Uw7qoybXGeMdOtlpaVSdl2lRjouWk9mEF0Cd26pMIteDGtV1PGhSN48Hbo6e31YtKVlz4Yx4MIQKBt54UQkWlmjfHOscP1642Oa-VW60hHg-ah8.webp",
+        "/src/assets/간계밥.png",
     },
     {
       name: "최고의 안주 계란말이",
