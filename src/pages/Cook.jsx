@@ -114,7 +114,8 @@ const Cook = () => {
           mainIngredient: recipe["메인 재료"],
           subIngredient: recipe["서브 재료"],
           image: recipeImages.find(
-            (image) => image.name.trim() === recipe.요리명.trim()
+            (image) =>
+              image.name.replace(" ", "") === recipe.요리명.replace(" ", "")
           )?.imgPath,
           matchRate: recipe["완성도"],
         }))
