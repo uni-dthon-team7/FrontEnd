@@ -1,15 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GrayCard from "./GrayCard";
 
-const CharacterCard = ({ hasBab, exp, setExp, level = 1 }) => {
+const CharacterCard = ({ hasBab, exp, setExp }) => {
   const [bap, setBap] = useState(hasBab ? 80 : 0);
   const [bapCount, setBapCount] = useState(0);
+  const [level, setLevel] = useState(1);
+  const [maxExp, setMaxExp] = useState(100);
 
-  const handleBapClick = () => {
+  const handleBapClick = (amount = 20) => {
     if (bap >= 20) {
       setBap(bap - 20);
       setBapCount(bapCount + 1);
+      setExp(exp + amount);
     }
+  };
+
+  useEffect(() => {
+    calculateLevel(exp);
+  }, [exp]);
+
+  const calculateLevel = (exp) => {
+    let level = 1;
+    let maxExp = 100;
+    while (exp >= maxExp) {
+      exp -= maxExp;
+      level += 1;
+      maxExp = level * 100;
+    }
+    setLevel(level);
+    setMaxExp(maxExp);
   };
 
   return (
@@ -40,12 +59,14 @@ const CharacterCard = ({ hasBab, exp, setExp, level = 1 }) => {
               </span>
               <span className="font-bold text-sm">초급요리사</span>
             </div>
-            <span className="text-xs">(0/100)</span>
+            <span className="text-xs">
+              ({exp}/{maxExp})
+            </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
             <div
               className="bg-[#F2843B] h-2.5 rounded-full"
-              style={{ width: "30%" }}
+              style={{ width: `${(exp / maxExp) * 100}%` }}
             ></div>
           </div>
         </GrayCard>

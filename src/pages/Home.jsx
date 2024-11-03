@@ -14,8 +14,9 @@ import { ingredients, tools } from "../const";
 const Home = () => {
   const [selectedIngredients, setSelectedIngredients] = React.useState([]);
   const [selectedTools, setSelectedTools] = React.useState([]);
+  const [exp, setExp] = React.useState(0);
   const navigate = useNavigate();
-  
+
   const searchParams = new URLSearchParams(window.location.search);
   const hasBab = searchParams.get("finished") === "true";
 
@@ -50,7 +51,7 @@ const Home = () => {
           <span className="font-bold text-lg">먹살먹죽 </span>
           <span className="font-bold text-sm">님의 밥친구</span>
         </div>
-        <CharacterCard hasBab={hasBab}/>
+        <CharacterCard hasBab={hasBab} exp={exp} setExp={setExp} />
       </div>
       <hr />
       <div className="flex flex-col gap-1">
