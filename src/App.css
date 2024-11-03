@@ -9,11 +9,13 @@ body {
   place-items: normal;
 }
 
-select option {
-  /* 옵션 목록에 위치를 조정할 때 */
+option {
+  -webkit-appearance: none; /* 브라우저 기본 스타일 제거 */
+  -moz-appearance: none;
+  appearance: none;
   position: absolute;
-  top: 100px; /* 원하는 위치 */
-  left: 50px; /* 원하는 위치 */
-  transform: translateY(-50%); /* 중앙 정렬 */
-  font-size: 2rem;
+}
+
+select {
+  position: relative;
 }

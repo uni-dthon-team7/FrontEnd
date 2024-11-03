@@ -110,6 +110,22 @@ const Steps = () => {
         <img src={`/src/assets/step${step}.png`} className="mt-10" />
       )}
 
+      {step > 0 && step < 5 && (
+        <img
+          src="/src/assets/left.png"
+          className="absolute left-0 bottom-14"
+          onClick={() => setStep((prev) => prev - 1)}
+        />
+      )}
+
+      {step < 5 && (
+        <img
+          src="/src/assets/right.png"
+          className="absolute right-0 bottom-14"
+          onClick={() => setStep((prev) => prev + 1)}
+        />
+      )}
+
       <div className="flex gap-3 fixed bottom-0 right-0 w-full z-10 bg-white py-2 px-[1.3rem]">
         <Button
           onClick={() => {
