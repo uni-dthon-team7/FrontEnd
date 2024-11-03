@@ -6,12 +6,19 @@ const CharacterCard = ({ hasBab, exp, setExp }) => {
   const [bapCount, setBapCount] = useState(0);
   const [level, setLevel] = useState(1);
   const [maxExp, setMaxExp] = useState(100);
+  const [egg, setEgg] = useState(hasBab ? 2 : 0);
 
-  const handleBapClick = (amount = 20) => {
+  const handleBapClick = () => {
+    if (egg) {
+      setEgg(egg - 1);
+      setBapCount(bapCount + 1);
+      setExp(exp + 30);
+      return;
+    }
     if (bap >= 20) {
       setBap(bap - 20);
       setBapCount(bapCount + 1);
-      setExp(exp + amount);
+      setExp(exp + 20);
     }
   };
 
@@ -70,7 +77,19 @@ const CharacterCard = ({ hasBab, exp, setExp }) => {
             ></div>
           </div>
         </GrayCard>
-        <div className="border flex-grow rounded-md flex p-2">
+        <div className="border flex-grow rounded-md flex p-2 relative">
+          {egg > 0 &&
+            (egg === 1 ? (
+              <img
+                src="/src/assets/bonus_egg.png"
+                className="absolute left-10"
+              />
+            ) : (
+              <img
+                src="/src/assets/bonus_egg2.png"
+                className="absolute left-8 top-0"
+              />
+            ))}
           <img
             src={`/src/assets/bap${bap / 20}.png`}
             alt="bab"
