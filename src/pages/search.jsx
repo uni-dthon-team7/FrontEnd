@@ -11,7 +11,9 @@ const Search = () => {
     if (searchTerm) {
       const fetchSearchResults = async () => {
         try {
-          const response = await fetch(`http://16.171.73.198:8080/recipes/search?q=${searchTerm}`);
+          const response = await fetch(
+            `http://16.171.73.198:8080/recipes/search?q=${searchTerm}`
+          );
           const data = await response.json();
           setSearchResults(data);
         } catch (error) {
@@ -41,10 +43,10 @@ const Search = () => {
       </div>
 
       {/* 검색 결과 섹션 */}
-      <div className="w-full">
+      <div className="w-full flex gap-2">
         {searchResults.length > 0 ? (
           searchResults.map((recipe, index) => (
-            <RecipeCard key={index} recipe={recipe} />
+            <RecipeCard key={index} recipe={recipe} showMatchRate={false} useStroke={true}/>
           ))
         ) : (
           <p className="text-gray-500 text-center">검색 결과가 없습니다.</p>

@@ -1,47 +1,70 @@
-import React from "react";
-
-const RecipeCard = ({ recipe }) => (
-  <div className="flex items-start p-4 border rounded-md shadow-md mb-4">
-    {/* 레시피 이미지 */}
-    <img
-      src={recipe.imgPath || "/default-recipe-image.png"}
-      alt={recipe.recipeName}
-      className="w-24 h-24 rounded-md object-cover mr-4"
-    />
-
-    {/* 레시피 정보 */}
-    <div className="flex flex-col flex-grow">
-      <h3 className="text-lg font-semibold">{recipe.recipeName}</h3>
-      <div className="flex justify-between items-center text-sm text-gray-500 mt-1">
-        <span className="text-sm text-gray-500">{recipe.userName} 님</span>
-        <span className="mx-auto">조회수: {recipe.frequency}</span> {/* 가운데 정렬 */}
-        <span>{recipe.avgCookingTime}분 이내</span>
+const RecipeCard = ({
+  recipe,
+  color,
+  onClick,
+  isSelected,
+  showMatchRate = true,
+  useStroke = false,
+}) => {
+  return (
+    <div
+      className={`bg-white shadow-custom rounded-md p-3 shrink-0 cursor-pointer border-2 ${
+        isSelected ? "border-[#F2843B]" : "border-white"
+      } ${useStroke ? "!border !border-[#D9D9D9] !shadow-none" : ""}`}
+      onClick={onClick}
+    >
+      <img
+        src={recipe.image ?? recipe.imgPath ?? "/default-recipe-image.png"}
+        alt={recipe.name || recipe.recipeName}
+        className="h-32 w-[8.3rem] object-cover rounded-md mb-1"
+      />
+      <div className="font-semibold w-full text-center">
+        {recipe.name || recipe.recipeName}
       </div>
-
-      
-      {/* 재료 태그 */}
-        <div className="flex flex-wrap mt-2 gap-1">
-          {recipe.primaryIngredients.map((ingredient, idx) => (
-            <div key={idx} className="mb-1">
-              <span className="text-xs bg-orange-200 text-orange-700 px-2 py-1 rounded-full flex items-center">
-                <img src={ingredient.imgPath} alt={ingredient.name} className="w-4 h-4 mr-1 rounded" />
-                {ingredient.name}
-              </span>
-            </div>
-          ))}
-          {recipe.nonPrimaryIngredients.map((ingredient, idx) => (
-            <div key={idx} className="mb-1">
-              <span className="text-xs bg-yellow-200 text-yellow-700 px-2 py-1 rounded-full flex items-center">
-                <img src={ingredient.imgPath} alt={ingredient.name} className="w-4 h-4 mr-1 rounded" />
-                {ingredient.name}
-              </span>
-            </div>
-          ))}
+      <div className="text-sm flex items-center justify-between">
+        <span className="text-[#ACACAC]">
+          {recipe.user || recipe.userName} 님
+        </span>
+        <div className="flex items-center text-[#ACACAC]">
+          <img className="w-3 h-3" src="/src/assets/share.png" />
+          {recipe.used || recipe.frequency}
         </div>
-
-
+        <span>({recipe.time || recipe.avgCookingTime}분)</span>
+      </div>
+      <p>{recipe.description}</p>
+      <p>{recipe.instructions}</p>
+      <hr className="mt-1 mb-2" />
+      <div className="flex justify-between">
+        <div className="">
+          <div className="flex items-center justify-center bg-[#F2843B] rounded-full text-white px-2 py-0.5 mb-1">
+            <span className="text-xs mr-1">메인재료</span>
+            <span className="text-sm font-bold">
+              {recipe.mainIngredient ??
+                (recipe.primaryIngredients
+                  ? recipe.primaryIngredients[0].name
+                  : "")}
+            </span>
+          </div>
+          <div className="flex items-center justify-center bg-[#FFF1EC] rounded-full text-[#F2843B] px-2 py-0.5 border border-[#F2843B]">
+            <span className="text-xs mr-1 ">부재료</span>
+            <span className="text-sm font-bold">
+              {recipe.subIngredient ??
+                (recipe.nonPrimaryIngredients &&
+                recipe.nonPrimaryIngredients.length > 0
+                  ? recipe.primaryIngredients[0].name
+                  : "")}
+            </span>
+          </div>
+        </div>
+        {showMatchRate && (
+          <div className="flex flex-col justify-center items-center">
+            <div className="text-xs font-semibold text-[#979797]">일치율</div>
+            <div className="font-bold text-[#F2843B]">{recipe.matchRate}%</div>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default RecipeCard;
