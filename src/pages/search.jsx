@@ -43,7 +43,7 @@ const Search = () => {
       </div>
 
       {/* 검색 결과 섹션 */}
-      <div className="w-full flex gap-2">
+      <div className="w-full grid grid-cols-2 gap-2">
         {searchResults.length > 0 ? (
           searchResults.map((recipe, index) => (
             <RecipeCard key={index} recipe={recipe} showMatchRate={false} useStroke={true}/>

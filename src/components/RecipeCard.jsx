@@ -1,3 +1,5 @@
+import { recipeImages } from "../const";
+
 const RecipeCard = ({
   recipe,
   color,
@@ -6,6 +8,14 @@ const RecipeCard = ({
   showMatchRate = true,
   useStroke = false,
 }) => {
+
+  const getRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * recipeImages.length);
+    return recipeImages[randomIndex].imgPath;
+  };
+
+  const defaultImage = "https://mblogthumb-phinf.pstatic.net/MjAyMzAxMDJfOTQg/MDAxNjcyNjI1Mjg4MDg4.0So90H3XrJ89k48OKGVizwxucQBaNGW-KqxPq2EGf2sg.3n-ZMgwF6BNkpJH0mpcY9ACPtwC276qok3-9OPtE_s0g.JPEG.iskra316/1672625284926.jpg?type=w800"
+
   return (
     <div
       className={`bg-white shadow-custom rounded-md p-3 shrink-0 cursor-pointer border-2 ${
@@ -14,7 +24,7 @@ const RecipeCard = ({
       onClick={onClick}
     >
       <img
-        src={recipe.image ?? recipe.imgPath ?? "/default-recipe-image.png"}
+        src={recipe.image ?? recipe.imgPath ?? defaultImage}
         alt={recipe.name || recipe.recipeName}
         className="h-32 w-[8.3rem] object-cover rounded-md mb-1"
       />
@@ -51,7 +61,7 @@ const RecipeCard = ({
               {recipe.subIngredient ??
                 (recipe.nonPrimaryIngredients &&
                 recipe.nonPrimaryIngredients.length > 0
-                  ? recipe.primaryIngredients[0].name
+                  ? recipe.nonPrimaryIngredients[0].name
                   : "")}
             </span>
           </div>
